@@ -25,7 +25,6 @@ const App: Component = () => {
   return (
     <div class={styles.App}>
         <button onClick={() => toggleLogin()}>Log {isLoggedInText()}</button>
-        {/* <button onClick={() => toggleLogin()}>Log In</button> */}
         <Routes>
           <Show when={isLoggedIn()} fallback={
             <>
