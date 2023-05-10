@@ -1,10 +1,13 @@
 import { Component } from "solid-js";
 import styles from '../styles/temporary-all-div-styles.module.css';
-const Home : Component = () => {
+
+const PostLoginHome: Component = () => {
+
     return (
         <div class={styles.all_divs}>
-            Home
+            This is the post-login-home
         </div>
     )
 }
-export default Home;
+
+export default PostLoginHome;
