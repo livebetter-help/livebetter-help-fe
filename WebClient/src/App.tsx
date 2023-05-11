@@ -12,6 +12,7 @@ import WeeklyWorkouts from './Pages/WeeklyWorkouts';
 import ExerciseSummary from './Pages/ExerciseSummary';
 import navbar_styles from './styles/navbar.module.css';
 import { Container, Navbar, Image, Nav, NavDropdown } from 'solid-bootstrap';
+import SignedInAlready from './Pages/SignedInAlready';
 
 window.addEventListener("load", () => { 
   var mySession = localStorage.getItem("loggedIn");
@@ -69,6 +70,8 @@ const App: Component = () => {
               <Route path="/exercise_summary" component={ExerciseSummary}/>
               <Route path="/home" component={Home} />
               <Route path="/" component={Home} />
+              <Route path="/login" component={SignedInAlready}></Route>
+              <Route path="/register" component={SignedInAlready}/>
             </>
           }>
             <Route path="/home" component={Home} />
