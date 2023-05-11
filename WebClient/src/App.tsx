@@ -21,8 +21,8 @@ window.addEventListener("load", () => {
 })
 
 const App: Component = () => {
-  const [isLoggedIn, setIsLoggedIn] = createSignal(sessionStorage.getItem("loggedIn") == "true");
-  const [isLoggedInText, setIsLoggedInText] = createSignal("In");
+  const [isLoggedIn, setIsLoggedIn] = createSignal(sessionStorage.getItem("loggedIn") == "true"),
+  [isLoggedInText, setIsLoggedInText] = createSignal("In");
   const toggleLogin = () => {
     setIsLoggedIn(!isLoggedIn())
     sessionStorage.setItem("loggedIn", isLoggedIn() ? "true" : "false");
