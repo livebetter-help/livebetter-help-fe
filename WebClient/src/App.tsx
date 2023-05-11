@@ -1,6 +1,6 @@
-import { Component, JSX, Show, createEffect, createSignal } from 'solid-js';
+import { Component, JSX, Show, createEffect, createSignal, } from 'solid-js';
 import {Test} from "./components/Test";
-import { Routes, Route } from "@solidjs/router";
+import { Routes, Route, A} from "@solidjs/router";
 import Home from "./Pages/Home";
 import logo from './logo.svg';
 import styles from './App.module.css';
@@ -10,33 +10,67 @@ import RegisterPage from './Pages/RegisterPage';
 import ExerciseScheduler from './Pages/ExerciseScheduler';
 import WeeklyWorkouts from './Pages/WeeklyWorkouts';
 import ExerciseSummary from './Pages/ExerciseSummary';
+import navbar_styles from './styles/navbar.module.css';
+import { Container, Navbar, Image, Nav, NavDropdown } from 'solid-bootstrap';
+
+window.addEventListener("load", () => { 
+  var mySession = localStorage.getItem("loggedIn");
+  if(mySession == null)
+    localStorage.setItem("loggedIn", "false");
+})
 
 const App: Component = () => {
-  const [isLoggedIn, setIsLoggedIn] = createSignal(true);
+  const [isLoggedIn, setIsLoggedIn] = createSignal(localStorage.getItem("loggedIn") == "true");
   const [isLoggedInText, setIsLoggedInText] = createSignal("In");
-  const toggleLogin = () => setIsLoggedIn(!isLoggedIn());
+  const toggleLogin = () => {
+    setIsLoggedIn(!isLoggedIn())
+    localStorage.setItem("loggedIn", isLoggedIn() ? "true" : "false");
+  };
   createEffect(() => {
-    if(isLoggedIn()){
+    if(isLoggedIn())
       setIsLoggedInText("Out");
-    }else{
+    else
       setIsLoggedInText("In");
-    }
   })
   return (
-    <div class={styles.App}>
+    <div>
+      <Navbar bg="light"expand="lg">
+          <Navbar.Brand href="/home">
+              <div style={{display: 'flex'}}>
+                <img src={logo} height={30} width={30} />
+                <div class={navbar_styles.text_spacing_from_logo}>Live Better</div>
+              </div>
+          </Navbar.Brand>
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+          <Nav class="mr-auto"style={{ "margin-left": "auto", "margin-right": "10px"}}>
+            <Show when={isLoggedIn()} fallback={
+              <>
+              <A style={{"margin-right": "10px"}} href="/login">Login</A>
+              <A href="/register">Register</A>
+              </>
+            }>
+              <NavDropdown title="Hi, John" class="dropdown-menu-right" style={{"margin-right": "10px"}}>
+                <div style={{"display": "flex", "flex-direction": "column", "align-items": "center", "margin-right": "100px"}}>
+                  <A href="/exercise_scheduler">Exercise Scheduler</A>
+                  <A href="/exercise_summary">Exercise Summary</A>
+                  <A href="/weekly_workouts">Weekly Workouts</A>
+                </div>
+              </NavDropdown>
+            </Show>
+          </Nav>
+      </Navbar>
         <button onClick={() => toggleLogin()}>Log {isLoggedInText()}</button>
         <Routes>
-          <Show when={isLoggedIn()} fallback={
+          <Show when={!isLoggedIn()} fallback={
             <>
-            <button onClick={() => toggleLogin()}>Log Out</button>
               <Route path="/post_login_home" component={PostLoginHome}/>
               <Route path="/exercise_scheduler" component={ExerciseScheduler}/>
               <Route path="/weekly_workouts" component={WeeklyWorkouts}/>
               <Route path="/exercise_summary" component={ExerciseSummary}/>
-              
+              <Route path="/home" component={Home} />
+              <Route path="/" component={Home} />
             </>
           }>
-            <button onClick={() => toggleLogin()}>Log In</button>
             <Route path="/home" component={Home} />
             <Route path="/" component={Home} />
             <Route path="/login" component={Login}/>
