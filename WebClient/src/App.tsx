@@ -9,7 +9,7 @@ import ExerciseScheduler from './Pages/ExerciseScheduler';
 import WeeklyWorkouts from './Pages/WeeklyWorkouts';
 import ExerciseSummary from './Pages/ExerciseSummary';
 import SignedInAlready from './Pages/SignedInAlready';
-import NavBar from './components/OurNavBar';
+import OurNavBar from './components/OurNavBar';
 
 window.addEventListener('load', () => {
   var mySession = sessionStorage.getItem('loggedIn');
@@ -31,7 +31,7 @@ const App: Component = () => {
   });
   return (
     <div>
-      <NavBar isLoggedIn={isLoggedIn} />
+      <OurNavBar isLoggedIn={isLoggedIn} />
       <button onClick={() => toggleLogin()}>Log {isLoggedInText()}</button>
       <Routes>
         <Show

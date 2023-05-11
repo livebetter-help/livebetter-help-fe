@@ -4,7 +4,7 @@ import { Accessor, Component, JSXElement, Show, children } from 'solid-js';
 import logo from '../logo.svg';
 import navbar_styles from '../styles/navbar.module.css';
 
-const NavBar: Component<{ isLoggedIn: Accessor<Boolean> }> = (props) => {
+const OurNavBar: Component<{ isLoggedIn: Accessor<Boolean> }> = (props) => {
   return (
     <Navbar bg="light" expand="lg">
       <Navbar.Brand href="/home">
@@ -51,4 +51,4 @@ const NavBar: Component<{ isLoggedIn: Accessor<Boolean> }> = (props) => {
   );
 };
 
-export default NavBar;
+export default OurNavBar;
