@@ -15,17 +15,17 @@ import { Container, Navbar, Image, Nav, NavDropdown } from 'solid-bootstrap';
 import SignedInAlready from './Pages/SignedInAlready';
 
 window.addEventListener("load", () => { 
-  var mySession = localStorage.getItem("loggedIn");
+  var mySession = sessionStorage.getItem("loggedIn");
   if(mySession == null)
-    localStorage.setItem("loggedIn", "false");
+    sessionStorage.setItem("loggedIn", "false");
 })
 
 const App: Component = () => {
-  const [isLoggedIn, setIsLoggedIn] = createSignal(localStorage.getItem("loggedIn") == "true");
+  const [isLoggedIn, setIsLoggedIn] = createSignal(sessionStorage.getItem("loggedIn") == "true");
   const [isLoggedInText, setIsLoggedInText] = createSignal("In");
   const toggleLogin = () => {
     setIsLoggedIn(!isLoggedIn())
-    localStorage.setItem("loggedIn", isLoggedIn() ? "true" : "false");
+    sessionStorage.setItem("loggedIn", isLoggedIn() ? "true" : "false");
   };
   createEffect(() => {
     if(isLoggedIn())
