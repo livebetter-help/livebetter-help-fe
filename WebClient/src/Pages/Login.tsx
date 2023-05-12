@@ -1,10 +1,13 @@
-import { Component } from "solid-js";
 import styles from '../styles/temporary-all-div-styles.module.css';
-const Home : Component = () => {
+import { Component } from "solid-js";
+
+const Login: Component = () => {
+
     return (
         <div class={styles.all_divs}>
-            Home
+            This is the login page
         </div>
     )
 }
-export default Home;
+
+export default Login;

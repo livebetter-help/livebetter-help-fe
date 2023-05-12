@@ -16,6 +16,8 @@
   },
   "dependencies": {
     "@solidjs/router": "^0.8.2",
+    "jsonwebtoken": "^9.0.0",
+    "solid-bootstrap": "^1.0.13",
     "solid-js": "^1.6.10"
   }
 }
